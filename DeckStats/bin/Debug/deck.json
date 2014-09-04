@@ -1,0 +1,51 @@
+{
+  "cards": [
+    {
+      "Name": "Test Run",
+      "Count": 3
+    },
+    {
+      "Name": "Diesel",
+      "Count": 3
+    },
+    {
+      "Name": "Tinkering",
+      "Count": 2
+    },
+    {
+      "Name": "Gordian Blade",
+      "Count": 2
+    },
+    {
+      "Name": "Datasucker",
+      "Count": 2
+    },
+    {
+      "Name": "Crypsis",
+      "Count": 2
+    },
+    {
+      "Name": "The Toolbox",
+      "Count": 1
+    },
+    {
+      "Name": "Dyson Mem Chip",
+      "Count": 3
+    },
+    {
+      "Name": "Personal Workshop",
+      "Count": 2
+    },
+    {
+      "Name": "Liberated Account",
+      "Count": 3
+    },
+    {
+      "Name": "The Helpful AI",
+      "Count": 3
+    }
+  ],
+  "Name": "KateGen",
+  "WinPercentage": 0.0,
+  "comments": null
+}

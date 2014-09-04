@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="DeckStats.GameControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+				mc:Ignorable="d"
+        d:DesignHeight="300" d:DesignWidth="220">
+	<Grid>
+		<Button Name="StartGameButton" Content="Start" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="StartGameButton_Click"/>
+		<Label Content="You are playing:" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top"/>
+		<Label Name="NameLabel" Content="" HorizontalAlignment="Left" Margin="105,35,0,0" VerticalAlignment="Top"/>
+		<Label Name="TimeLabel" Content="Time elapsed:" HorizontalAlignment="Left" Margin="10,117,0,0" VerticalAlignment="Top"/>
+		<Button Name="NoteButton" Content="Make Note" HorizontalAlignment="Left" Margin="10,176,0,0" VerticalAlignment="Top" Width="75" Click="NoteButton_Click"/>
+		<Button Name="MatchOverButton" Content="Match Over" HorizontalAlignment="Left" Margin="10,201,0,0" VerticalAlignment="Top" Width="75" Click="MatchOverButton_Click"/>
+		<TextBox Name="CommentBox" HorizontalAlignment="Left" Height="23" Margin="10,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+		<Button Name="MulliganButton" Content="Mulligan" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" Width="75" Click="MulliganButton_Click"/>
+		<Button Name="TurnButton_Copy" Content="End of Turn" HorizontalAlignment="Left" Margin="10,92,0,0" VerticalAlignment="Top" Width="75" Click="TurnButton_Copy_Click"/>
+
+
+	</Grid>
+</UserControl>

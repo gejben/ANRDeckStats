@@ -1,0 +1,94 @@
+{
+  "GamesEnded": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "cards": [
+    {
+      "Name": "Account Siphon",
+      "Count": 3
+    },
+    {
+      "Name": "Inside Job",
+      "Count": 3
+    },
+    {
+      "Name": "Early Bird",
+      "Count": 3
+    },
+    {
+      "Name": "Legwork",
+      "Count": 3
+    },
+    {
+      "Name": "Planned Assault",
+      "Count": 3
+    },
+    {
+      "Name": "Alias",
+      "Count": 2
+    },
+    {
+      "Name": "Breach",
+      "Count": 2
+    },
+    {
+      "Name": "Passport",
+      "Count": 2
+    },
+    {
+      "Name": "The Maker's Eye",
+      "Count": 2
+    },
+    {
+      "Name": "Lucky Find",
+      "Count": 2
+    },
+    {
+      "Name": "Sure Gamble",
+      "Count": 3
+    },
+    {
+      "Name": "Indexing",
+      "Count": 2
+    },
+    {
+      "Name": "Desperado",
+      "Count": 2
+    },
+    {
+      "Name": "Express Delivery",
+      "Count": 3
+    },
+    {
+      "Name": "Prepaid VoicePAD",
+      "Count": 3
+    },
+    {
+      "Name": "Dirty Laundry",
+      "Count": 3
+    },
+    {
+      "Name": "Plascrete Carapace",
+      "Count": 2
+    },
+    {
+      "Name": "Levy AR Lab Access",
+      "Count": 1
+    },
+    {
+      "Name": "Same Old Thing",
+      "Count": 2
+    }
+  ],
+  "Name": "KenEventson",
+  "Corp": false,
+  "GamesWon": 3,
+  "GamesPlayed": 4,
+  "AvgPlayTimeMinutes": 0,
+  "comments": [
+    "kjlhjkb"
+  ]
+}
