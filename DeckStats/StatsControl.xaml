@@ -32,7 +32,7 @@
 			<Label Name="TimeLossCountLabel" Content="Label" Margin="149,253,10,0" VerticalAlignment="Top" Height="26"/>
 			<Label Name="TurnsWinCountLabel" Content="Label" Margin="149,279,10,0" VerticalAlignment="Top" Height="26"/>
 			<Label Name="TurnsLossCountLabel" Content="Label" Margin="149,302,10,0" VerticalAlignment="Top" Height="26"/>
-			<Label Name="VersionLabel" Content="Label" HorizontalAlignment="Left" Margin="149,10,0,0" VerticalAlignment="Top" Width="38" Height="26"/>
+			<ComboBox Name="VersionBox"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="44" Height="19" Margin="149,17,0,0" SelectionChanged="VersionBox_SelectionChanged"/>
 		</Grid>
 	</ScrollViewer>
 </UserControl>

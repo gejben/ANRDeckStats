@@ -20,12 +20,24 @@ namespace DeckStats {
 	public partial class StatsControl : UserControl {
 
 		MainWindow mw;
+		private Deck deck;
+		List<string> versions;
 		public StatsControl(Deck deck, MainWindow main) {
 			InitializeComponent();
+			this.deck = deck;
 			mw = main;
 			NameLabel.Content = deck.Name;
-			VersionLabel.Content = "v." + deck.Version;
+			versions = new List<string>();
+			for (int i = 1; i <= deck.Version; i++) {
+				versions.Add("v."+i);
+			}
+			VersionBox.ItemsSource = versions;
+			VersionBox.SelectedIndex = versions.Count-1;
 
+			SetupView();
+		}
+
+		private void SetupView() {
 			int gamesPlayed = 0;
 			int gamesWon = 0;
 
@@ -41,12 +53,12 @@ namespace DeckStats {
 			int avgTurnsWin = 0;
 			int avgTurnsLoss = 0;
 
-			gamesPlayed = deck.games.Count();
+			gamesPlayed = deck.GetGames(VersionBox.SelectedIndex).Count();
 
-			foreach (Game game in deck.games) {
+			foreach (Game game in deck.GetGames(VersionBox.SelectedIndex)) {
 				if (game.won) gamesWon++;
 				switch (game.endType) {
-					case GameEndType.AgendaWin: ++agendaWins; 
+					case GameEndType.AgendaWin: ++agendaWins;
 						break;
 					case GameEndType.AgendaLoss: ++agendaLoss;
 						break;
@@ -74,13 +86,10 @@ namespace DeckStats {
 				avgLossMinutes = 0;
 				avgTurnsLoss = 0;
 			}
-			
-			
-
 
 			GamesPlayedLabel.Content = gamesPlayed;
 			GamesWonLabel.Content = gamesWon;
-			
+
 			if (deck.Corp) {
 				DeckingLabel.Content = "Loss by Decking";
 				FlatlineLabel.Content = "Won by Flatlining";
@@ -101,6 +110,10 @@ namespace DeckStats {
 
 		private void BackButton_Click(object sender, RoutedEventArgs e) {
 			mw.Reset();
+		}
+
+		private void VersionBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+			SetupView();
 		}
 	}
 }

@@ -29,13 +29,6 @@ namespace DeckStats {
 		public List<List<Game>> GamesPerVersion { get; set; }
 		public List<string> comments{get;set;}
 
-		[JsonIgnore]
-		public List<Game> games {
-			get {
-				return GamesPerVersion[version];
-			}
-		}
-
 		public void AddComment(string comment) {
 			comments.Add(comment);
 		}
@@ -56,7 +49,7 @@ namespace DeckStats {
 			game.mulligan = mulligan;
 			EndTypeWindow ew = new EndTypeWindow(game, Corp);
 			ew.Show();
-			games.Add(game);
+			GamesPerVersion[version].Add(game);
 		}
 
 		public void Update(Deck deck) {
@@ -66,6 +59,9 @@ namespace DeckStats {
 			GamesPerVersion.Add(new List<Game>());
 		}
 
+		public List<Game> GetGames(int ver) {
+			return GamesPerVersion[ver];
+		}
 
 	}
 }
