@@ -5,7 +5,7 @@
 	<Grid>
 		<Label Name="Label" Content="How did you ..." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="27" Width="172"/>
 		<Button Name="Condition1" Content="Condition 1" HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top" Width="75" Click="Condition1_Click"/>
-		<Button Name="Condition2" Content="Condition 2" HorizontalAlignment="Left" Margin="107,65,0,0" VerticalAlignment="Top" Width="75" Click="Condition2_Click"/>
+		<Button Name="Condition2" Content="Condition 2" HorizontalAlignment="Left" Margin="90,65,0,0" VerticalAlignment="Top" Width="75" Click="Condition2_Click"/>
 
 	</Grid>
 </Window>

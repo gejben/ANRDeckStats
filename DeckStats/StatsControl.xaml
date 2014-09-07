@@ -7,11 +7,11 @@
 
 	<ScrollViewer>
 		<Grid ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="410">
-			<Label Content="Name:" HorizontalAlignment="Left" Margin="7,19,0,0" VerticalAlignment="Top" Height="26" Width="44"/>
-			<Label Name="NameLabel" Content="Label" HorizontalAlignment="Left" Margin="64,19,0,0" VerticalAlignment="Top" Width="111" Height="26"/>
+			<Label Content="Name:" HorizontalAlignment="Left" Margin="7,10,0,0" VerticalAlignment="Top" Height="26" Width="44"/>
+			<Label Name="NameLabel" Content="Label" HorizontalAlignment="Left" Margin="51,10,0,0" VerticalAlignment="Top" Width="104" Height="26"/>
 			<Label Content="Games Played:" HorizontalAlignment="Left" Margin="7,45,0,0" VerticalAlignment="Top" Width="90" Height="26"/>
 			<Label Content="Games Won:" HorizontalAlignment="Left" Margin="7,71,0,0" VerticalAlignment="Top" Width="90" Height="26"/>
-			<Label Name="GamesPlayedLabel" Content="Label" Margin="149,45,35,0" VerticalAlignment="Top" Height="26"/>
+			<Label Name="GamesPlayedLabel" Content="Label" Margin="149,45,10,0" VerticalAlignment="Top" Height="26"/>
 			<Button Name="BackButton" Content="Back" HorizontalAlignment="Left" Margin="10,342,0,0" VerticalAlignment="Top" Width="75" Click="BackButton_Click" Height="20"/>
 			<Label Name="GamesWonLabel" Content="Label" Margin="149,71,10,0" VerticalAlignment="Top" Height="26"/>
 			<Label Content="Won by Agenda Score:" HorizontalAlignment="Left" Margin="7,97,0,0" VerticalAlignment="Top" Width="132" Height="26"/>
@@ -32,6 +32,7 @@
 			<Label Name="TimeLossCountLabel" Content="Label" Margin="149,253,10,0" VerticalAlignment="Top" Height="26"/>
 			<Label Name="TurnsWinCountLabel" Content="Label" Margin="149,279,10,0" VerticalAlignment="Top" Height="26"/>
 			<Label Name="TurnsLossCountLabel" Content="Label" Margin="149,302,10,0" VerticalAlignment="Top" Height="26"/>
+			<Label Name="VersionLabel" Content="Label" HorizontalAlignment="Left" Margin="149,10,0,0" VerticalAlignment="Top" Width="38" Height="26"/>
 		</Grid>
 	</ScrollViewer>
 </UserControl>

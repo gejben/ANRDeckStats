@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Newtonsoft.Json;
+
 namespace DeckStats {
 	public class Deck {
 
@@ -11,17 +13,28 @@ namespace DeckStats {
 			Name = name;
 			cards = new List<Card>();
 			comments = new List<string>();
-			games = new List<Game>();
+			GamesPerVersion = new List<List<Game>>();
+			GamesPerVersion.Add(new List<Game>());
+			version = 0;
 		}
 
+		private int version;
+		public int Version { get { return version + 1; } set { version = value-1; } }
 		public string Name { get; set; }
 		public string Identity { get; set; }
 		public bool Corp { get; set; }
 
 		public List<Card> cards { get; set; }
-		public List<Game> games { get; set; }
+
+		public List<List<Game>> GamesPerVersion { get; set; }
 		public List<string> comments{get;set;}
 
+		[JsonIgnore]
+		public List<Game> games {
+			get {
+				return GamesPerVersion[version];
+			}
+		}
 
 		public void AddComment(string comment) {
 			comments.Add(comment);
@@ -44,6 +57,13 @@ namespace DeckStats {
 			EndTypeWindow ew = new EndTypeWindow(game, Corp);
 			ew.Show();
 			games.Add(game);
+		}
+
+		public void Update(Deck deck) {
+			Version++;
+			cards.Clear();
+			cards = deck.cards;
+			GamesPerVersion.Add(new List<Game>());
 		}
 
 

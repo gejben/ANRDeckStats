@@ -31,7 +31,8 @@ namespace DeckStats {
 
 		enum states{
 			startGame,
-			checkStats
+			checkStats,
+			updateDeck
 		};
 
 		states state = states.startGame;
@@ -48,6 +49,8 @@ namespace DeckStats {
 				startGame(deckName);
 			} else if (state == states.checkStats) {
 				showStats(deckName);
+			}else if(state == states.updateDeck){
+				MakeUpdate(deckName);
 			}
 		}
 
@@ -173,8 +176,62 @@ namespace DeckStats {
 			}			
 		}
 
-		public void UpdateDeck() {
-			MessageBox.Show("Feature not implemented yet");
+		public void MakeUpdate(string dName) {
+			//MessageBox.Show("Feature not implemented yet");
+
+			OpenFileDialog ofd = new OpenFileDialog();
+			ofd.Filter = "OCTGN Deck files (.o8d)|*.o8d";
+			ofd.FilterIndex = 0;
+			ofd.Multiselect = false;
+
+			bool? userClickedOK = ofd.ShowDialog();
+
+
+			if (userClickedOK == true) {
+
+				bool isExists = System.IO.Directory.Exists("Decks");
+
+				if (!isExists)
+					System.IO.Directory.CreateDirectory("Decks");
+
+				// Open the selected file to read.
+				string deckName = System.IO.Path.GetFileName(ofd.FileName);
+				deckName = deckName.Remove(deckName.IndexOf('.'));
+				Deck deck = new Deck(deckName);
+
+				System.IO.Stream fileStream = ofd.OpenFile();
+
+				using (XmlReader reader = XmlReader.Create(fileStream)) {
+					// Parse the file and display each of the nodes.
+					bool id = false;
+					while (reader.Read()) {
+
+						switch (reader.Name) {
+							case "section":
+								switch (reader.GetAttribute("name")) {
+									case "Identity":
+										id = true;
+										break;
+									case "R&D / Stack":
+										output.Append("Deck:\n");
+										break;
+								}
+								break;
+							case "card":
+								if (reader.AttributeCount > 0) {
+									if (id == false) {
+										deck.AddCard(Convert.ToInt32(reader.GetAttribute("qty")), reader.ReadElementContentAsString());
+									} else {
+										deck.Identity = (reader.ReadElementContentAsString());
+										id = false;
+									}
+								}
+								break;
+						}
+					}
+				}
+				decks[dName].Update(deck);
+			}
 		}
 
 		public void SaveDeck(Deck deck) {
@@ -192,6 +249,12 @@ namespace DeckStats {
 
 		public void DeckStats() {
 			state = states.checkStats;
+			SelectDeckWindow win = new SelectDeckWindow(decks, this);
+			win.Show();
+		}
+
+		public void UpdateDeck() {
+			state = states.updateDeck;
 			SelectDeckWindow win = new SelectDeckWindow(decks, this);
 			win.Show();
 		}

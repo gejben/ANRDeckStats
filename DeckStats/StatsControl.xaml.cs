@@ -24,6 +24,7 @@ namespace DeckStats {
 			InitializeComponent();
 			mw = main;
 			NameLabel.Content = deck.Name;
+			VersionLabel.Content = "v." + deck.Version;
 
 			int gamesPlayed = 0;
 			int gamesWon = 0;
