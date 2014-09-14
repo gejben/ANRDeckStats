@@ -43,5 +43,9 @@ namespace DeckStats {
 		private void Update_Click(object sender, RoutedEventArgs e) {
 			mw.UpdateDeck();
 		}
+
+		private void Remove_Click(object sender, RoutedEventArgs e) {
+			mw.RemoveDeck();
+		}
 	}
 }

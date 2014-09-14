@@ -20,6 +20,6 @@ C:\Users\Gejben\Workspace\dotNet\DeckStats\DeckStats\obj\Release\DeckStats.Prope
 C:\Users\Gejben\Workspace\dotNet\DeckStats\DeckStats\obj\Release\DeckStats.csproj.GenerateResource.Cache
 C:\Users\Gejben\Workspace\dotNet\DeckStats\DeckStats\obj\Release\DeckStats.exe
 C:\Users\Gejben\Workspace\dotNet\DeckStats\DeckStats\obj\Release\DeckStats.pdb
-C:\Users\Gejben\Workspace\dotNet\DeckStats\DeckStats\obj\Release\DeckStats.csprojResolveAssemblyReference.cache
 C:\Users\Gejben\Workspace\dotNet\DeckStats\DeckStats\obj\Release\EndTypeWindow.baml
 C:\Users\Gejben\Workspace\dotNet\DeckStats\DeckStats\obj\Release\EndTypeWindow.g.cs
+C:\Users\Gejben\Workspace\dotNet\DeckStats\DeckStats\obj\Release\DeckStats.csprojResolveAssemblyReference.cache

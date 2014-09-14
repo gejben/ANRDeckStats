@@ -6,11 +6,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="220">
 	<Grid Margin="0,0,10,0">
-		<Button Content="Start Game" HorizontalAlignment="Left" Margin="45,10,0,0" VerticalAlignment="Top" Width="130" Height="40" Click="Start_Click"/>
-		<Button Content="Load Deck" HorizontalAlignment="Left" Margin="45,60,0,0" VerticalAlignment="Top" Width="130" Height="40       " Click="Load_Click"/>
-		<Button Content="Update Deck" HorizontalAlignment="Left" Margin="45,110,0,0" VerticalAlignment="Top" Width="130" Height="40       " Click="Update_Click"/>
-		<Button Content="Check Stats" HorizontalAlignment="Left" Margin="45,160,0,0" VerticalAlignment="Top" Width="130" Height="40       " Click="Stats_Click"/>
-		<Button Content="Exit" HorizontalAlignment="Left" Margin="45,210,0,0" VerticalAlignment="Top" Width="130" Height="40       " Click="Exit_Click"/>
+		<Button Content="Start Game" HorizontalAlignment="Left" Margin="41,10,0,0" VerticalAlignment="Top" Width="130" Height="30" Click="Start_Click"/>
+		<Button Content="Load Deck" HorizontalAlignment="Left" Margin="41,45,0,0" VerticalAlignment="Top" Width="130" Height="30       " Click="Load_Click"/>
+		<Button Content="Update Deck" HorizontalAlignment="Left" Margin="41,80,0,0" VerticalAlignment="Top" Width="130" Height="30       " Click="Update_Click"/>
+		<Button Content="Check Stats" HorizontalAlignment="Left" Margin="41,150,0,0" VerticalAlignment="Top" Width="130" Height="30       " Click="Stats_Click"/>
+		<Button Content="Exit" HorizontalAlignment="Left" Margin="41,185,0,0" VerticalAlignment="Top" Width="130" Height="30       " Click="Exit_Click"/>
+		<Button Content="Remove Deck" HorizontalAlignment="Left" Margin="41,115,0,0" VerticalAlignment="Top" Width="130" Height="30       " Click="Remove_Click"/>
 
 	</Grid>
 </UserControl>

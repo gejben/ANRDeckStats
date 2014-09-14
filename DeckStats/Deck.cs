@@ -9,8 +9,11 @@ using Newtonsoft.Json;
 namespace DeckStats {
 	public class Deck {
 
-		public Deck(string name) {
+		private MainWindow mw;
+
+		public Deck(string name, MainWindow main) {
 			Name = name;
+			mw = main;
 			cards = new List<Card>();
 			comments = new List<string>();
 			GamesPerVersion = new List<List<Game>>();
@@ -47,7 +50,7 @@ namespace DeckStats {
 			game.playTimeMinutes = seconds / 60;
 			game.turns = turns;
 			game.mulligan = mulligan;
-			EndTypeWindow ew = new EndTypeWindow(game, Corp);
+			EndTypeWindow ew = new EndTypeWindow(this, game, Corp);
 			ew.Show();
 			GamesPerVersion[version].Add(game);
 		}
@@ -57,6 +60,10 @@ namespace DeckStats {
 			cards.Clear();
 			cards = deck.cards;
 			GamesPerVersion.Add(new List<Game>());
+		}
+
+		public void Save() {
+			mw.SaveDeck(this);
 		}
 
 		public List<Game> GetGames(int ver) {

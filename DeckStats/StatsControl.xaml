@@ -7,32 +7,31 @@
 
 	<ScrollViewer>
 		<Grid ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="410">
-			<Label Content="Name:" HorizontalAlignment="Left" Margin="7,10,0,0" VerticalAlignment="Top" Height="26" Width="44"/>
-			<Label Name="NameLabel" Content="Label" HorizontalAlignment="Left" Margin="51,10,0,0" VerticalAlignment="Top" Width="104" Height="26"/>
-			<Label Content="Games Played:" HorizontalAlignment="Left" Margin="7,45,0,0" VerticalAlignment="Top" Width="90" Height="26"/>
-			<Label Content="Games Won:" HorizontalAlignment="Left" Margin="7,71,0,0" VerticalAlignment="Top" Width="90" Height="26"/>
-			<Label Name="GamesPlayedLabel" Content="Label" Margin="149,45,10,0" VerticalAlignment="Top" Height="26"/>
+			<Label Name="NameLabel" Content="Label" HorizontalAlignment="Left" Margin="7,17,0,0" VerticalAlignment="Top" Width="132" Height="26"/>
+			<Label Content="Games Played:" HorizontalAlignment="Left" Margin="7,48,0,0" VerticalAlignment="Top" Width="107" Height="26"/>
+			<Label Content="Games Won:" HorizontalAlignment="Left" Margin="7,71,0,0" VerticalAlignment="Top" Width="107" Height="26"/>
+			<Label Name="GamesPlayedLabel" Content="Label" Margin="111,45,0,0" VerticalAlignment="Top" Height="26"/>
 			<Button Name="BackButton" Content="Back" HorizontalAlignment="Left" Margin="10,342,0,0" VerticalAlignment="Top" Width="75" Click="BackButton_Click" Height="20"/>
-			<Label Name="GamesWonLabel" Content="Label" Margin="149,71,10,0" VerticalAlignment="Top" Height="26"/>
-			<Label Content="Won by Agenda Score:" HorizontalAlignment="Left" Margin="7,97,0,0" VerticalAlignment="Top" Width="132" Height="26"/>
-			<Label Content="Loss by Agenda Score:" HorizontalAlignment="Left" Margin="7,123,0,0" VerticalAlignment="Top" Width="132" Height="26"/>
-			<Label Name="DeckingLabel" Content="Decking" HorizontalAlignment="Left" Margin="7,149,0,0" VerticalAlignment="Top" Width="129" Height="26"/>
-			<Label Name="FlatlineLabel" Content="Flatline" HorizontalAlignment="Left" Margin="7,175,0,0" VerticalAlignment="Top" Width="129" Height="26"/>
-			<Label Name="AgendaWinCountLabel" Content="Label" Margin="149,97,10,0" VerticalAlignment="Top" Height="26"/>
-			<Label Name="AgendaLossCountLabel" Content="Label" Margin="149,123,10,0" VerticalAlignment="Top" Height="26"/>
-			<Label Name="DeckingCountLabel" Content="Label" Margin="149,149,10,0" VerticalAlignment="Top" Height="26"/>
-			<Label Name="FlatlineCountLabel" Content="Label" Margin="149,175,10,0" VerticalAlignment="Top" Height="26"/>
-			<Label Name="MulliganLabel" Content="Mulligans taken:" HorizontalAlignment="Left" Margin="7,201,0,0" VerticalAlignment="Top" Width="129" Height="26"/>
-			<Label Name="MulliganCountLabel" Content="Label" Margin="149,201,10,0" VerticalAlignment="Top" Height="26"/>
-			<Label Name="TimeWinLabel" Content="Avg. Time Win:" HorizontalAlignment="Left" Margin="7,227,0,0" VerticalAlignment="Top" Width="129" Height="26"/>
-			<Label Name="TimeLossLabel" Content="Avg. Time Loss:" HorizontalAlignment="Left" Margin="7,253,0,0" VerticalAlignment="Top" Width="129" Height="26"/>
-			<Label Name="TurnsWinLabel" Content="Avg. Turns Win:" HorizontalAlignment="Left" Margin="7,276,0,0" VerticalAlignment="Top" Width="129" Height="26"/>
-			<Label Name="TurnsLossLabel" Content="Avg. Turns Loss:" HorizontalAlignment="Left" Margin="7,302,0,0" VerticalAlignment="Top" Width="129" Height="26"/>
-			<Label Name="TimeWinCountLabel" Content="Label" Margin="149,227,10,0" VerticalAlignment="Top" Height="26"/>
-			<Label Name="TimeLossCountLabel" Content="Label" Margin="149,253,10,0" VerticalAlignment="Top" Height="26"/>
-			<Label Name="TurnsWinCountLabel" Content="Label" Margin="149,279,10,0" VerticalAlignment="Top" Height="26"/>
-			<Label Name="TurnsLossCountLabel" Content="Label" Margin="149,302,10,0" VerticalAlignment="Top" Height="26"/>
-			<ComboBox Name="VersionBox"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="44" Height="19" Margin="149,17,0,0" SelectionChanged="VersionBox_SelectionChanged"/>
+			<Label Name="GamesWonLabel" Content="Label" Margin="111,71,0,0" VerticalAlignment="Top" Height="26"/>
+			<Label Content="Won by Agenda:" HorizontalAlignment="Left" Margin="7,97,0,0" VerticalAlignment="Top" Width="107" Height="26"/>
+			<Label Content="Loss by Agenda:" HorizontalAlignment="Left" Margin="7,123,0,0" VerticalAlignment="Top" Width="107" Height="26"/>
+			<Label Name="DeckingLabel" Content="Decking" HorizontalAlignment="Left" Margin="7,149,0,0" VerticalAlignment="Top" Width="107" Height="26"/>
+			<Label Name="FlatlineLabel" Content="Flatline" HorizontalAlignment="Left" Margin="7,175,0,0" VerticalAlignment="Top" Width="107" Height="26"/>
+			<Label Name="AgendaWinCountLabel" Content="Label" Margin="111,97,0,0" VerticalAlignment="Top" Height="26"/>
+			<Label Name="AgendaLossCountLabel" Content="Label" Margin="111,123,0,0" VerticalAlignment="Top" Height="26"/>
+			<Label Name="DeckingCountLabel" Content="Label" Margin="111,146,0,0" VerticalAlignment="Top" Height="26"/>
+			<Label Name="FlatlineCountLabel" Content="Label" Margin="111,172,0,0" VerticalAlignment="Top" Height="26"/>
+			<Label Name="MulliganLabel" Content="Mulligans taken:" HorizontalAlignment="Left" Margin="7,201,0,0" VerticalAlignment="Top" Width="107" Height="26"/>
+			<Label Name="MulliganCountLabel" Content="Label" Margin="111,198,0,0" VerticalAlignment="Top" Height="26"/>
+			<Label Name="TimeWinLabel" Content="Avg. Time Win:" HorizontalAlignment="Left" Margin="7,227,0,0" VerticalAlignment="Top" Width="107" Height="26"/>
+			<Label Name="TimeLossLabel" Content="Avg. Time Loss:" HorizontalAlignment="Left" Margin="7,253,0,0" VerticalAlignment="Top" Width="105" Height="26"/>
+			<Label Name="TurnsWinLabel" Content="Avg. Turns Win:" HorizontalAlignment="Left" Margin="7,276,0,0" VerticalAlignment="Top" Width="105" Height="26"/>
+			<Label Name="TurnsLossLabel" Content="Avg. Turns Loss:" HorizontalAlignment="Left" Margin="7,302,0,0" VerticalAlignment="Top" Width="105" Height="26"/>
+			<Label Name="TimeWinCountLabel" Content="Label" Margin="111,224,0,0" VerticalAlignment="Top" Height="26"/>
+			<Label Name="TimeLossCountLabel" Content="Label" Margin="111,250,0,0" VerticalAlignment="Top" Height="26"/>
+			<Label Name="TurnsWinCountLabel" Content="Label" Margin="111,276,0,0" VerticalAlignment="Top" Height="26"/>
+			<Label Name="TurnsLossCountLabel" Content="Label" Margin="111,302,0,0" VerticalAlignment="Top" Height="26"/>
+			<ComboBox Name="VersionBox"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="44" Height="19" Margin="144,17,0,0" SelectionChanged="VersionBox_SelectionChanged"/>
 		</Grid>
 	</ScrollViewer>
 </UserControl>

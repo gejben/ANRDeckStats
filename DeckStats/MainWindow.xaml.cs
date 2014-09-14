@@ -32,7 +32,8 @@ namespace DeckStats {
 		enum states{
 			startGame,
 			checkStats,
-			updateDeck
+			updateDeck,
+			removeDeck
 		};
 
 		states state = states.startGame;
@@ -45,12 +46,19 @@ namespace DeckStats {
 		private List<string> deckNameList;
 
 		public void Select(string deckName) {
-			if (state == states.startGame) {
-				startGame(deckName);
-			} else if (state == states.checkStats) {
-				showStats(deckName);
-			}else if(state == states.updateDeck){
-				MakeUpdate(deckName);
+			switch(state){
+				case states.startGame:
+					startGame(deckName);
+					break;
+				case states.checkStats:
+					showStats(deckName);
+					break;
+				case states.updateDeck:
+					MakeUpdate(deckName);
+					break;
+				case states.removeDeck:
+					PerformRemoval(deckName);
+					break;
 			}
 		}
 
@@ -63,7 +71,6 @@ namespace DeckStats {
 			Deck deck = decks[deckName];
 			this.Content = new StatsControl(deck, this);
 		}
-
 
 
 		public MainWindow() {
@@ -93,6 +100,12 @@ namespace DeckStats {
 			win.Show();
 		}
 
+		public void RemoveDeck() {
+			state = states.removeDeck;
+			SelectDeckWindow win = new SelectDeckWindow(decks, this);
+			win.Show();
+		}
+
 		public void ImportDeck() {
 			OpenFileDialog ofd = new OpenFileDialog();
 			ofd.Filter = "OCTGN Deck files (.o8d)|*.o8d";
@@ -113,65 +126,71 @@ namespace DeckStats {
 				foreach (string filename in ofd.FileNames) {
 					string deckName = System.IO.Path.GetFileName(filename);
 					deckName = deckName.Remove(deckName.IndexOf('.'));
-					Deck deck = new Deck(deckName);
-					deckNameList.Add(deckName);
+					Deck deck = new Deck(deckName, this);
 
-					System.IO.Stream fileStream = ofd.OpenFile();
+					if (deckNameList.Contains(deckName)) {
+						MessageBox.Show("Deckname:"+deckName+" exist, remove deck first or perform update");
+					} else {
+
+						deckNameList.Add(deckName);
+
+						System.IO.Stream fileStream = ofd.OpenFile();
 
 
 
-					using (XmlReader reader = XmlReader.Create(fileStream)) {
-						// Parse the file and display each of the nodes.
-						bool id = false;
-						while (reader.Read()) {
+						using (XmlReader reader = XmlReader.Create(fileStream)) {
+							// Parse the file and display each of the nodes.
+							bool id = false;
+							while (reader.Read()) {
 
-							switch (reader.Name) {
-								case "section":
-									switch (reader.GetAttribute("name")) {
-										case "Identity":
-											id = true;
-											break;
-										case "R&D / Stack":
-											output.Append("Deck:\n");
-											break;
-									}
-									break;
-								case "card":
-									if (reader.AttributeCount > 0) {
-										if (id == false) {
-											deck.AddCard(Convert.ToInt32(reader.GetAttribute("qty")), reader.ReadElementContentAsString());
-										} else {
-											deck.Identity = (reader.ReadElementContentAsString());
-											id = false;
+								switch (reader.Name) {
+									case "section":
+										switch (reader.GetAttribute("name")) {
+											case "Identity":
+												id = true;
+												break;
+											case "R&D / Stack":
+												output.Append("Deck:\n");
+												break;
 										}
+										break;
+									case "card":
+										if (reader.AttributeCount > 0) {
+											if (id == false) {
+												deck.AddCard(Convert.ToInt32(reader.GetAttribute("qty")), reader.ReadElementContentAsString());
+											} else {
+												deck.Identity = (reader.ReadElementContentAsString());
+												id = false;
+											}
 
-									}
-									break;
+										}
+										break;
+								}
 							}
 						}
+
+						string sMessageBoxText = "IS this a Corp deck?";
+						string sCaption = "Corp or Runner?";
+
+						MessageBoxButton btnMessageBox = MessageBoxButton.YesNo;
+						MessageBoxImage icnMessageBox = MessageBoxImage.Exclamation;
+
+						MessageBoxResult rsltMessageBox = MessageBox.Show(sMessageBoxText, sCaption, btnMessageBox, icnMessageBox);
+
+						switch (rsltMessageBox) {
+							case MessageBoxResult.Yes:
+								deck.Corp = true;
+								break;
+
+							case MessageBoxResult.No:
+								deck.Corp = false;
+								break;
+						}
+
+						decks.Add(deckName, deck);
+						SaveDeck(deck);
+						fileStream.Close();
 					}
-
-					string sMessageBoxText = "IS this a Corp deck?";
-					string sCaption = "Corp or Runner?";
-
-					MessageBoxButton btnMessageBox = MessageBoxButton.YesNo;
-					MessageBoxImage icnMessageBox = MessageBoxImage.Exclamation;
-
-					MessageBoxResult rsltMessageBox = MessageBox.Show(sMessageBoxText, sCaption, btnMessageBox, icnMessageBox);
-
-					switch (rsltMessageBox) {
-						case MessageBoxResult.Yes:
-							deck.Corp = true;
-							break;
-
-						case MessageBoxResult.No:
-							deck.Corp = false;
-							break;
-					}
-
-					decks.Add(deckName, deck);
-					SaveDeck(deck);
-					fileStream.Close();
 				}
 			}			
 		}
@@ -197,7 +216,7 @@ namespace DeckStats {
 				// Open the selected file to read.
 				string deckName = System.IO.Path.GetFileName(ofd.FileName);
 				deckName = deckName.Remove(deckName.IndexOf('.'));
-				Deck deck = new Deck(deckName);
+				Deck deck = new Deck(deckName, this);
 
 				System.IO.Stream fileStream = ofd.OpenFile();
 
@@ -231,6 +250,27 @@ namespace DeckStats {
 					}
 				}
 				decks[dName].Update(deck);
+			}
+		}
+
+		private void PerformRemoval(string deckName) {
+			string sMessageBoxText = "Are you sure you want to remove "+deckName+"?";
+			string sCaption = "Remove "+deckName;
+
+			MessageBoxButton btnMessageBox = MessageBoxButton.YesNo;
+			MessageBoxImage icnMessageBox = MessageBoxImage.Exclamation;
+
+			MessageBoxResult rsltMessageBox = MessageBox.Show(sMessageBoxText, sCaption, btnMessageBox, icnMessageBox);
+
+			switch (rsltMessageBox) {
+				case MessageBoxResult.Yes:
+					deckNameList.Remove(deckName);
+					decks.Remove(deckName);
+					File.Delete(DeckPath + deckName + ending);
+					foreach(KeyValuePair<string,Deck> deck in decks){
+						SaveDeck(deck.Value);
+					}
+					break;
 			}
 		}
 

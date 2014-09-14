@@ -55,57 +55,77 @@ namespace DeckStats {
 
 			gamesPlayed = deck.GetGames(VersionBox.SelectedIndex).Count();
 
-			foreach (Game game in deck.GetGames(VersionBox.SelectedIndex)) {
-				if (game.won) gamesWon++;
-				switch (game.endType) {
-					case GameEndType.AgendaWin: ++agendaWins;
-						break;
-					case GameEndType.AgendaLoss: ++agendaLoss;
-						break;
-					case GameEndType.Decking: ++decking;
-						break;
-					case GameEndType.Flatline: ++flatline;
-						break;
+			if (gamesPlayed > 0) {
+				foreach (Game game in deck.GetGames(VersionBox.SelectedIndex)) {
+					if (game.won) gamesWon++;
+					switch (game.endType) {
+						case GameEndType.AgendaWin: ++agendaWins;
+							break;
+						case GameEndType.AgendaLoss: ++agendaLoss;
+							break;
+						case GameEndType.Decking: ++decking;
+							break;
+						case GameEndType.Flatline: ++flatline;
+							break;
+					}
+					if (game.mulligan) mulligans++;
+					if (game.won) {
+						avgWinMinutes += game.playTimeMinutes;
+						avgTurnsWin += game.turns;
+					} else {
+						avgLossMinutes += game.playTimeMinutes;
+						avgTurnsLoss += game.turns;
+					}
 				}
-				if (game.mulligan) mulligans++;
-				if (game.won) {
-					avgWinMinutes += game.playTimeMinutes;
-					avgTurnsWin += game.turns;
+				if (gamesWon > 0) {
+					avgWinMinutes /= gamesWon;
+					avgTurnsWin /= gamesWon;
+				}
+				if (gamesPlayed != gamesWon) {
+					avgLossMinutes /= (gamesPlayed - gamesWon);
+					avgTurnsLoss /= (gamesPlayed - gamesWon);
 				} else {
-					avgLossMinutes += game.playTimeMinutes;
-					avgTurnsLoss += game.turns;
+					avgLossMinutes = 0;
+					avgTurnsLoss = 0;
+				}
+
+				GamesPlayedLabel.Content = gamesPlayed;
+				GamesWonLabel.Content = (int)(((float)gamesWon / (float)gamesPlayed) * 100) + "%"; ;
+
+				if (deck.Corp) {
+					DeckingLabel.Content = "Loss by Decking";
+					FlatlineLabel.Content = "Won by Flatlining";
+				} else {
+					DeckingLabel.Content = "Won by Decking";
+					FlatlineLabel.Content = "Loss by Flatlining";
 				}
 			}
-
-			avgWinMinutes /= gamesWon;
-			avgTurnsWin /= gamesWon;
-			if (gamesPlayed != gamesWon) {
-				avgLossMinutes /= (gamesPlayed - gamesWon);
-				avgTurnsLoss /= (gamesPlayed - gamesWon);
+			if (gamesPlayed > 0) {
+				AgendaWinCountLabel.Content = (int)(((float)agendaWins / (float)gamesPlayed) * 100) + "%";
+				AgendaLossCountLabel.Content = (int)(((float)agendaLoss / (float)gamesPlayed) * 100) + "%";
+				FlatlineCountLabel.Content = (int)(((float)flatline / (float)gamesPlayed) * 100) + "%";
+				DeckingCountLabel.Content = (int)(((float)decking / (float)gamesPlayed) * 100) + "%";
+				MulliganCountLabel.Content = (int)(((float)mulligans / (float)gamesPlayed) * 100) + "%";
+				TimeWinCountLabel.Content = avgWinMinutes + " min";
+				TimeLossCountLabel.Content = avgLossMinutes + " min";
 			} else {
-				avgLossMinutes = 0;
-				avgTurnsLoss = 0;
+				AgendaWinCountLabel.Content = 0 + "%";
+				AgendaLossCountLabel.Content = 0 + "%";
+				FlatlineCountLabel.Content = 0 + "%";
+				DeckingCountLabel.Content = 0 + "%";
+				MulliganCountLabel.Content = 0 + "%";
+				TimeWinCountLabel.Content = 0 + " min";
+				TimeLossCountLabel.Content = 0 + " min";
 			}
-
-			GamesPlayedLabel.Content = gamesPlayed;
-			GamesWonLabel.Content = gamesWon;
-
-			if (deck.Corp) {
-				DeckingLabel.Content = "Loss by Decking";
-				FlatlineLabel.Content = "Won by Flatlining";
+			if (avgTurnsLoss > 0 || avgTurnsWin > 0) {
+				TurnsWinCountLabel.Content = avgTurnsWin;
+				TurnsLossCountLabel.Content = avgTurnsLoss;
 			} else {
-				DeckingLabel.Content = "Won by Decking";
-				FlatlineLabel.Content = "Loss by Flatlining";
+				TurnsWinLabel.Visibility = System.Windows.Visibility.Hidden;
+				TurnsLossLabel.Visibility = System.Windows.Visibility.Hidden;
+				TurnsWinCountLabel.Visibility = System.Windows.Visibility.Hidden;
+				TurnsLossCountLabel.Visibility = System.Windows.Visibility.Hidden;
 			}
-			AgendaWinCountLabel.Content = agendaWins;
-			AgendaLossCountLabel.Content = agendaLoss;
-			FlatlineCountLabel.Content = flatline;
-			DeckingCountLabel.Content = decking;
-			MulliganCountLabel.Content = mulligans;
-			TimeWinCountLabel.Content = avgWinMinutes;
-			TimeLossCountLabel.Content = avgLossMinutes;
-			TurnsWinCountLabel.Content = avgTurnsWin;
-			TurnsLossCountLabel.Content = avgTurnsLoss;
 		}
 
 		private void BackButton_Click(object sender, RoutedEventArgs e) {

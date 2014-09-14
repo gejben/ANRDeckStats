@@ -20,11 +20,13 @@ namespace DeckStats {
 
 		Game game;
 		bool corp;
+		Deck deck;
 
-		public EndTypeWindow(Game g, bool c) {
+		public EndTypeWindow(Deck d, Game g, bool c) {
 			InitializeComponent();
 			game = g;
 			corp = c;
+			deck = d;
 			if (game.won) {
 				Label.Content = "How did you win?";
 			}else{
@@ -55,6 +57,7 @@ namespace DeckStats {
 				} else {
 					game.endType = GameEndType.AgendaLoss;
 				}
+				deck.Save();
 				this.Close();
 		}
 
@@ -72,6 +75,7 @@ namespace DeckStats {
 					game.endType = GameEndType.Flatline;
 				}
 			}
+			deck.Save();
 			this.Close();
 		}
 	}
