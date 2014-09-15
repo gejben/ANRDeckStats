@@ -82,7 +82,29 @@
     }
   ],
   "GamesPerVersion": [
-    []
+    [
+      {
+        "won": false,
+        "mulligan": false,
+        "endType": 0,
+        "playTimeMinutes": 0,
+        "turns": 0
+      },
+      {
+        "won": false,
+        "mulligan": false,
+        "endType": 0,
+        "playTimeMinutes": 0,
+        "turns": 0
+      },
+      {
+        "won": false,
+        "mulligan": false,
+        "endType": 1,
+        "playTimeMinutes": 0,
+        "turns": 0
+      }
+    ]
   ],
   "comments": [
     "kjlhjkb"

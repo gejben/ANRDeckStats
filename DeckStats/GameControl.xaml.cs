@@ -74,9 +74,14 @@ private DispatcherTimer timer;
 						deck.gamePlayed(false, timeCounter, turns, mulligan);
 						break;
 				}
-				mw.SaveDeck(deck);
-				mw.Reset();
+				EndTypeWindow ew = new EndTypeWindow(deck, this);
+				ew.Show();
 			}
+		}
+
+		public void EndGame() {
+			mw.SaveDeck(deck);
+			mw.Reset();
 		}
 
 		private void NoteButton_Click(object sender, RoutedEventArgs e) {

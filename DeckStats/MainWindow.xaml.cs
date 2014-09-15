@@ -126,7 +126,7 @@ namespace DeckStats {
 				foreach (string filename in ofd.FileNames) {
 					string deckName = System.IO.Path.GetFileName(filename);
 					deckName = deckName.Remove(deckName.IndexOf('.'));
-					Deck deck = new Deck(deckName, this);
+					Deck deck = new Deck(deckName);
 
 					if (deckNameList.Contains(deckName)) {
 						MessageBox.Show("Deckname:"+deckName+" exist, remove deck first or perform update");
@@ -216,7 +216,7 @@ namespace DeckStats {
 				// Open the selected file to read.
 				string deckName = System.IO.Path.GetFileName(ofd.FileName);
 				deckName = deckName.Remove(deckName.IndexOf('.'));
-				Deck deck = new Deck(deckName, this);
+				Deck deck = new Deck(deckName);
 
 				System.IO.Stream fileStream = ofd.OpenFile();
 

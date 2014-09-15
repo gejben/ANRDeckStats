@@ -17,22 +17,21 @@ namespace DeckStats {
 	/// Interaction logic for EndTypeWindow.xaml
 	/// </summary>
 	public partial class EndTypeWindow : Window {
-
-		Game game;
-		bool corp;
 		Deck deck;
+		GameControl gc;
+		Game game;
 
-		public EndTypeWindow(Deck d, Game g, bool c) {
+		public EndTypeWindow(Deck d, GameControl gameControl) {
 			InitializeComponent();
-			game = g;
-			corp = c;
+			gc = gameControl;
 			deck = d;
+			game = deck.GamesPerVersion[deck.Version-1][deck.GamesPerVersion[deck.Version-1].Count-1];
 			if (game.won) {
 				Label.Content = "How did you win?";
 			}else{
 				Label.Content = "How did you loose?";
 			}
-			if (corp) {
+			if (deck.Corp) {
 				if (game.won) {
 					Condition1.Content = "Agenda";
 					Condition2.Content = "Flatline";
@@ -57,12 +56,12 @@ namespace DeckStats {
 				} else {
 					game.endType = GameEndType.AgendaLoss;
 				}
-				deck.Save();
+				gc.EndGame();
 				this.Close();
 		}
 
 		private void Condition2_Click(object sender, RoutedEventArgs e) {
-			if (corp) {
+			if (deck.Corp) {
 				if (game.won) {
 					game.endType = GameEndType.Flatline;
 				} else {
@@ -75,7 +74,7 @@ namespace DeckStats {
 					game.endType = GameEndType.Flatline;
 				}
 			}
-			deck.Save();
+			gc.EndGame();
 			this.Close();
 		}
 	}
